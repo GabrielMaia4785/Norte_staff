@@ -1,0 +1,96 @@
+NORTE_STAFF - STAFF COMMANDS
+============================
+
+They only work with the whip.devtools permission and developer mode turned on in /w.
+Turning developer mode off also turns off noclip, god and invisible.
+Every use is written to the server console.
+[id] is optional. <value> is required.
+
+
+TOOLS
+-----
+/noclip
+    Turns free flight on or off. You are invisible, without collision and take no damage.
+    W A S D moves, Space goes up, Ctrl goes down, Shift goes fast, Alt goes slow.
+    If you are driving a car, the car flies with you.
+
+/god
+    Turns no damage mode on or off. Health goes back to full if hunger or thirst takes it.
+
+/invis
+    Turns invisibility on or off. Other players cannot see you, and you see yourself at half opacity.
+
+
+VEHICLES
+--------
+/car <model>
+    Spawns a temporary car where you stand, with its key, and puts you in the driver's seat.
+    Example: /car adder
+    A new /car removes the previous one. The car is also removed when you leave the server.
+
+/dv
+    Removes the car you are in, or the nearest car within 6 metres.
+    An owned car goes back to its garage. A street or temporary car is removed.
+
+/fix
+    Repairs the car you are in: engine, body, fuel tank and dirt.
+
+
+PLAYERS
+-------
+/revive [id]
+    Revives a downed player. Without an id, revives you.
+
+/heal [id]
+    Sets health, armour, hunger and thirst to full. Without an id, heals you.
+    If the player is down, they are revived first.
+
+/kick <id> [reason]
+    Kicks the player from the server.
+    Warning: it does not check ranks, unlike the kick in the /whip panel.
+
+/freeze <id>
+    Freezes the player in place. Use it again to unfreeze.
+
+
+TELEPORTS
+---------
+/tp <id>
+    Takes you to the player.
+
+/bring <id>
+    Brings the player to you.
+
+/tpm
+    Takes you to the waypoint on the map.
+
+/tpc <x> <y> <z>
+    Takes you to the coordinates.
+    Example: /tpc 215.0 -810.0 30.7
+
+/voltar
+    Takes you back to where you were before your last teleport.
+
+
+WORLD AND SERVER
+----------------
+/hora <hour> [minute]
+    Sets the server time for everyone.
+    Example: /hora 22 30
+
+/clima <type>
+    Sets the server weather for everyone.
+    Types: CLEAR, EXTRASUNNY, CLOUDS, OVERCAST, RAIN, THUNDER, CLEARING, FOGGY, SMOG, SNOW, BLIZZARD, SNOWLIGHT, XMAS, HALLOWEEN
+    Example: /clima RAIN
+
+/anuncio <text>
+    Shows a notice to every player for 10 seconds. 200 characters at most.
+
+
+CONSOLE
+-------
+These also work in the server console (txAdmin):
+/revive, /heal, /kick, /freeze, /hora, /clima and /anuncio.
+In the console, /revive and /heal need an id.
+
+Note: the command names stay in Portuguese (/voltar, /hora, /clima, /anuncio) in game.
