@@ -18,9 +18,8 @@ Every command goes through WHIP's own gate (`Whip.command` with `dev = true`). A
 | `/fix` | Repairs the car you are in |
 | `/revive [id]` | Revives a player (no id: yourself) |
 | `/heal [id]` | Health, armour, hunger and thirst to full |
-| `/tp <id>` | Teleports you to a player |
+| `/tp`, `/tpto`, `/tpm` | Come from whip_core 1.3.0: to a player, coordinates or the map waypoint. `/voltar` does not undo them |
 | `/bring <id>` | Brings a player to you |
-| `/tpm` | Teleports you to the map waypoint |
 | `/tpc <x> <y> <z>` | Teleports you to coordinates |
 | `/voltar` | Goes back to where you were before the last teleport |
 | `/freeze <id>` | Freezes or unfreezes a player |
@@ -33,7 +32,7 @@ Every command goes through WHIP's own gate (`Whip.command` with `dev = true`). A
 
 ## Requirements
 
-- WHIP (`whip_core` 1.0 or newer). No other dependency: no ox_lib, no database.
+- WHIP (`whip_core` 1.3.0 or newer, which has `/tp`, `/tpto` and `/tpm`). No other dependency: no ox_lib, no database.
 
 ## Install
 

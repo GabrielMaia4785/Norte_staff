@@ -197,28 +197,6 @@ RegisterNetEvent('norte_staff:teleport', function(x, y, z, h)
     irPara(x, y, z, type(h) == 'number' and h or nil)
 end)
 
-RegisterNetEvent('norte_staff:teleportMarcador', function()
-    local blip = GetFirstBlipInfoId(8)
-    if not DoesBlipExist(blip) then return avisar('Marca um ponto no mapa primeiro', 'error') end
-
-    local alvo = GetBlipInfoIdCoord(blip)
-    local ent = entidadeQueMove()
-
-    -- Procura o chão de cima para baixo, carregando a colisão em cada altura.
-    for z = 1000.0, 0.0, -50.0 do
-        SetEntityCoordsNoOffset(ent, alvo.x, alvo.y, z, false, false, false)
-        RequestCollisionAtCoord(alvo.x, alvo.y, z)
-        Wait(50)
-        local achou, chao = GetGroundZFor_3dCoord(alvo.x, alvo.y, z, false)
-        if achou then
-            irPara(alvo.x, alvo.y, chao + 1.0)
-            return
-        end
-    end
-    irPara(alvo.x, alvo.y, 200.0)
-    avisar('Chão não encontrado, ficaste no ar', 'warning')
-end)
-
 -- ============================================
 -- Veículos
 -- ============================================

@@ -55,14 +55,10 @@ PLAYERS
 
 TELEPORTS
 ---------
-/tp <id>
-    Takes you to the player.
+/tp, /tpto and /tpm: these come from whip_core. /tp takes <id> or <x> <y> [z].
 
 /bring <id>
     Brings the player to you.
-
-/tpm
-    Takes you to the waypoint on the map.
 
 /tpc <x> <y> <z>
     Takes you to the coordinates.

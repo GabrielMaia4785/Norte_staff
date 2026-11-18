@@ -278,17 +278,7 @@ end)
 -- Teleportes
 -- ============================================
 
-Whip.command('tp', { dev = true }, function(src, args)
-    if not soJogador(src) then return end
-    local id, why = alvo(src, args[1], false)
-    if not id then return responder(src, why, 'error') end
-
-    local c = exports.whip_core:GetPlayerCoords(id)
-    if not c then return responder(src, 'Posição do jogador desconhecida', 'error') end
-
-    teleportar(src, c.x, c.y, c.z)
-    registar(src, 'tp', id)
-end)
+-- /tp, /tpto e /tpm sao do whip_core (1.3.0): nao se registam aqui para nao lhes passarem por cima.
 
 Whip.command('bring', { dev = true }, function(src, args)
     if not soJogador(src) then return end
@@ -301,13 +291,6 @@ Whip.command('bring', { dev = true }, function(src, args)
     teleportar(id, c.x, c.y, c.z)
     registar(src, 'bring', id)
     responder(src, ('Jogador %d trazido'):format(id), 'success')
-end)
-
-Whip.command('tpm', { dev = true }, function(src)
-    if not soJogador(src) then return end
-    guardarPosicao(src)
-    TriggerClientEvent('norte_staff:teleportMarcador', src)
-    registar(src, 'tpm')
 end)
 
 Whip.command('tpc', { dev = true }, function(src, args)
