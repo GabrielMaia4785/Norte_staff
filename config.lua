@@ -15,3 +15,6 @@ Config.CarroDuracao = nil
 
 -- Texto máximo de /anuncio.
 Config.AnuncioMax = 200
+
+-- /god: de quantos em quantos ms o colete, a fome e a sede voltam ao máximo.
+Config.GodIntervalo = 1000

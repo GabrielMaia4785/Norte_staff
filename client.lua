@@ -158,11 +158,14 @@ local function desligarTudo()
     end
 end
 
-RegisterNetEvent('norte_staff:toggle', function(nome)
+RegisterNetEvent('norte_staff:toggle', function(nome, estado)
     if not APLICAR[nome] then return end
     if not devAtivo() then return avisar('Liga o modo de desenvolvedor em /w', 'error') end
 
-    local on = not ativo[nome]
+    -- O /god chega com o estado do servidor, que também enche colete, fome e sede.
+    local on
+    if type(estado) == 'boolean' then on = estado else on = not ativo[nome] end
+    if on == ativo[nome] then return end
     APLICAR[nome](on)
     avisar(('%s %s'):format(NOMES[nome], on and 'ligado' or 'desligado'), on and 'success' or 'info')
 end)

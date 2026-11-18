@@ -15,7 +15,7 @@ TOOLS
     If you are driving a car, the car flies with you.
 
 /god
-    Turns no damage mode on or off. Health goes back to full if hunger or thirst takes it.
+    Turns no damage mode on or off. Health, armour, hunger and thirst stay full while it is on.
 
 /invis
     Turns invisibility on or off. Other players cannot see you, and you see yourself at half opacity.

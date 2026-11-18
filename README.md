@@ -2,6 +2,8 @@
 
 Staff commands for FiveM servers running the **WHIP** framework (WHIPFX). Made by the Norte Roleplay team.
 
+> **Vibe coded.** This resource was written with an AI coding assistant (Claude Code). Read and test the code before you run it on a live server.
+
 Every command goes through WHIP's own gate (`Whip.command` with `dev = true`). A player needs the `whip.devtools` ACE **and** developer mode turned on in `/w`. Turning developer mode off also turns off noclip, god and invisible.
 
 ## Commands
@@ -9,7 +11,7 @@ Every command goes through WHIP's own gate (`Whip.command` with `dev = true`). A
 | Command | What it does |
 |---|---|
 | `/noclip` | Free flight (WASD, Space up, Ctrl down, Shift fast, Alt slow). If you are driving, the car flies with you |
-| `/god` | No damage |
+| `/god` | No damage. Health, armour, hunger and thirst stay full while it is on |
 | `/invis` | Invisible to other players |
 | `/car <model>` | Temporary car with key, you are seated at the wheel. A new `/car` removes the previous one |
 | `/dv` | Removes the car you are in, or the nearest one. An owned car goes back to its garage |
@@ -41,12 +43,13 @@ Every command goes through WHIP's own gate (`Whip.command` with `dev = true`). A
 
 ## Settings
 
-Noclip speeds, the `/dv` radius, how long a `/car` lasts and the `/anuncio` length are in `config.lua`. They can also be changed in game at `/whip` → Settings → Norte Staff, and changes apply at once.
+Noclip speeds, how often `/god` refills armour, hunger and thirst (`GodIntervalo`, 1000 ms by default), the `/dv` radius, how long a `/car` lasts and the `/anuncio` length are in `config.lua`. They can also be changed in game at `/whip` → Settings → Norte Staff, and changes apply at once.
 
 ## Notes
 
 - In-game messages and some command names (`/voltar`, `/hora`, `/clima`, `/anuncio`) are in Portuguese. Rename them in `server.lua` if you want.
 - God, invisible, noclip and freeze use WHIP's `HoldPlayerPed`, so they combine with other resources without fighting over the ped.
+- `/god` refills armour, hunger and thirst on the server with `SetStat`, once a second, only for players who have it on. It turns itself off when the player leaves or turns developer mode off.
 
 ## License
 

@@ -60,13 +60,58 @@ end
 -- Ferramentas próprias (no cliente)
 -- ============================================
 
-for _, nome in ipairs({ 'noclip', 'god', 'invis' }) do
+for _, nome in ipairs({ 'noclip', 'invis' }) do
     Whip.command(nome, { dev = true, whileDead = nome ~= 'noclip' }, function(src)
         if not soJogador(src) then return end
         registar(src, nome)
         TriggerClientEvent('norte_staff:toggle', src, nome)
     end)
 end
+
+-- God: o cliente trata da invencibilidade e da vida. O servidor mantém colete, fome e sede no máximo,
+-- porque só o servidor muda stats. Sai sozinho quando o modo de desenvolvedor desliga.
+local god = {}            -- [source] = true enquanto o /god está ligado
+local GOD_STATS = { armour = 100, hunger = 100, thirst = 100 }
+local godLoop = false
+
+local function encherStats(src)
+    for stat, max in pairs(GOD_STATS) do
+        local atual = exports.whip_core:GetStat(src, stat)
+        if atual and atual < max then
+            exports.whip_core:SetStat(src, stat, max, 'norte_staff:god')
+        end
+    end
+end
+
+local function iniciarGodLoop()
+    if godLoop then return end
+    godLoop = true
+    CreateThread(function()
+        while next(god) do
+            for src in pairs(god) do
+                if not GetPlayerName(src) or not exports.whip_core:HasDevTools(src) then
+                    god[src] = nil
+                else
+                    encherStats(src)
+                end
+            end
+            Wait(Config.GodIntervalo)
+        end
+        godLoop = false
+    end)
+end
+
+Whip.command('god', { dev = true, whileDead = true }, function(src)
+    if not soJogador(src) then return end
+    local estado = not god[src]
+    god[src] = estado or nil
+    registar(src, 'god', tostring(estado))
+    TriggerClientEvent('norte_staff:toggle', src, 'god', estado)
+    if estado then
+        encherStats(src)
+        iniciarGodLoop()
+    end
+end)
 
 -- ============================================
 -- Veículos
@@ -325,6 +370,7 @@ AddEventHandler('playerDropped', function()
     removerCarro(src)
     posAnterior[src] = nil
     congelados[src] = nil
+    god[src] = nil
 end)
 
 AddEventHandler('whip_core:player:logout', function(e)
